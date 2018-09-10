@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_200738_proeverij_speler</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_200738_proeverij_speler">klaar=true^alles_op=true^time_bonus=false^EQ<item endquery="false" field="klaar" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="false" field="alles_op" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="false" field="time_bonus" goto="false" newquery="false" operator="=" or="false" value="false"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Time bonus</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	var settingsGr = new GlideRecord('x_200738_proeverij_settings');
+	settingsGr.get('setting_name', "Insane time bonus");
+	var gtime = settingsGr.setting_value;
+	var curtime = dateTime.getDisplayValue();
+
+		if (dateTime.getDisplayValue() <= gtime){
+			gs.info('The current time: '+curtime+' is less than: '+gtime);
+			var spelerGr = new GlideRecord('x_200738_proeverij_speler');
+			spelerGr.get('sys_id', current.sys_id.toString());
+			spelerGr.time_bonus = true;
+			spelerGr.punten = spelerGr.punten +70;
+			spelerGr.update();
+		}
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-09 12:57:18</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d10f44c80fdb97009a53cd8ce1050e27</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>Time bonus</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+        <sys_update_name>sys_script_d10f44c80fdb97009a53cd8ce1050e27</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-23 18:53:00</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=d10f44c80fdb97009a53cd8ce1050e27"/>
+</record_update>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Vorm" max_length="40" name="x_200738_proeverij_vorm" type="collection">
+        <element label="Hoeveelheid" max_length="3" name="hoeveelheid" type="integer"/>
+        <element display="true" label="Vorm" max_length="40" name="vorm" type="string"/>
+    </element>
+</database>

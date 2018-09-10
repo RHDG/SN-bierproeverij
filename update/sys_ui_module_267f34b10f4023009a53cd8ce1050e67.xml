@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_ui_module">
+    <sys_ui_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Bier proeverij">0294cf330f0b97009a53cd8ce1050e11</application>
+        <filter/>
+        <name>Antwoorden onthullen</name>
+        <order>999</order>
+        <path>sys.scripts.do?action=run_module&amp;sys_id=eb6b36a80f5b1b009a53cd8ce1050e95</path>
+        <path_relative_to_root>true</path_relative_to_root>
+        <roles/>
+        <sys_class_name>sys_ui_module</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-08-21 09:43:14</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>267f34b10f4023009a53cd8ce1050e67</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Antwoorden onthullen</sys_name>
+        <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+        <sys_update_name>sys_ui_module_267f34b10f4023009a53cd8ce1050e67</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-21 09:43:52</sys_updated_on>
+        <table/>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+    </sys_ui_module>
+</record_update>

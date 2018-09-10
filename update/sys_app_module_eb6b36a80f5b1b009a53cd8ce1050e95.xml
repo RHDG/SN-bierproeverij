@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Bier proeverij">ce94cf330f0b97009a53cd8ce1050e0b</application>
+        <assessment/>
+        <content_page/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>SCRIPT</link_type>
+        <map_page/>
+        <mobile_title>Antwoorden onthullen</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order>999</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query>var gameActive = 0;&#13;
+var activeGr = new GlideRecord('x_200738_proeverij_settings');&#13;
+activeGr.addQuery('setting_name', "Game status");&#13;
+activeGr.query();&#13;
+while (activeGr.next()){&#13;
+	if (activeGr.setting_name == "Game status"){&#13;
+		if (activeGr.setting_value == "Active" || activeGr.setting_value == "Done"){&#13;
+			gameActive = 1;&#13;
+		}&#13;
+	}&#13;
+}&#13;
+if (gameActive == 1){&#13;
+	gs.info("Ok, we gaan alle punten uitrekenen:\n");&#13;
+	var spelerGr = new GlideRecord('x_200738_proeverij_speler');&#13;
+	spelerGr.query();&#13;
+	while (spelerGr.next()){&#13;
+		var playerPoints = 0;&#13;
+		var bonusBudget = 0;&#13;
+		var bonusNormal = 0;&#13;
+		var bonusGoud = 0;&#13;
+var goodList = "";&#13;
+		gs.info("Hier volgt speler '"+spelerGr.speler.user_name+"':");&#13;
+		var entryGr = new GlideRecord('x_200738_proeverij_entry');&#13;
+		entryGr.addQuery('sys_created_by', spelerGr.speler.user_name);&#13;
+		entryGr.query();&#13;
+		while (entryGr.next()){&#13;
+			var answerGr = new GlideRecord('x_200738_proeverij_antwoorden');&#13;
+			answerGr.query();&#13;
+			while (answerGr.next()){&#13;
+				if (answerGr.nummer == entryGr.nummer &amp;&amp; answerGr.bier == entryGr.bier){&#13;
+					gs.info('Goeie: '+answerGr.bier.getDisplayValue()+ ', Punten: '+entryGr.bier.punten);&#13;
+var goodList = goodList+entryGr.bier.sys_id.toString()+",";&#13;
+					playerPoints = playerPoints + entryGr.bier.punten;&#13;
+					if (answerGr.bier.getDisplayValue() == "Heineken" || answerGr.bier.getDisplayValue() == "Amstel"){&#13;
+						bonusNormal = bonusNormal +1;&#13;
+					}&#13;
+					if (answerGr.bier.getDisplayValue() == "Schutters bier" || answerGr.bier.getDisplayValue() == "Schultenbrau"){&#13;
+						bonusBudget = bonusBudget +1;&#13;
+					}&#13;
+					if (answerGr.bier.getDisplayValue() == "Leffe blond" || answerGr.bier.getDisplayValue() == "Hertog-Jan"){&#13;
+						bonusGoud = bonusGoud +1;&#13;
+					}&#13;
+				}&#13;
+			}&#13;
+		}&#13;
+		if (bonusNormal &gt; 1){&#13;
+			gs.info("Speler '"+spelerGr.speler.user_name+"' krijgt een bonus omdat hij Amstel en Heineken beide goed had! (+25)");&#13;
+			playerPoints = playerPoints + 25;&#13;
+		}&#13;
+		if (bonusBudget &gt; 1){&#13;
+			gs.info("Speler '"+spelerGr.speler.user_name+"' krijgt een bonus omdat hij Schutters en Schultenbrau beide goed had! (+20)");&#13;
+			playerPoints = playerPoints + 20;&#13;
+		}&#13;
+		if (bonusGoud &gt; 1){&#13;
+			gs.info("Speler '"+spelerGr.speler.user_name+"' krijgt een bonus omdat hij Leffe en Hertog-Jan beide goed had! (+10)");&#13;
+			playerPoints = playerPoints + 10;&#13;
+		}&#13;
+		gs.info("Punten verdient voor deze speler: "+playerPoints);&#13;
+		var addPointsGr = new GlideRecord('x_200738_proeverij_speler');&#13;
+		addPointsGr.get('speler', spelerGr.speler);&#13;
+		addPointsGr.punten = addPointsGr.punten + playerPoints;&#13;
+addPointsGr.antwoorden_goed = goodList;&#13;
+		addPointsGr.update();&#13;
+	}&#13;
+	gs.info("Alle spelers zijn behandeld.");&#13;
+	gs.info("Het spel wordt nu stopgezet");&#13;
+	var stopGr = new GlideRecord('x_200738_proeverij_settings');&#13;
+	stopGr.get('setting_name', "Game status");&#13;
+	stopGr.setting_value = "Done and stopped";&#13;
+	stopGr.update();&#13;
+}&#13;
+else {&#13;
+	gs.info("Het spel is al voorbij of nog niet begonnen, punten kunnen daarom niet toegekend worden");&#13;
+}</query>
+        <report/>
+        <roles>x_200738_proeverij.Scheids</roles>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-11 14:46:08</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>eb6b36a80f5b1b009a53cd8ce1050e95</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Antwoorden onthullen</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+        <sys_update_name>sys_app_module_eb6b36a80f5b1b009a53cd8ce1050e95</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-21 09:49:44</sys_updated_on>
+        <timeline_page/>
+        <title>Antwoorden onthullen</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+</record_update>

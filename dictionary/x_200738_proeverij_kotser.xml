@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Kotser" max_length="40" name="x_200738_proeverij_kotser" type="collection">
+        <element default="0" label="Aantal keer gekotst" max_length="2" name="aantal_gekotst" type="integer"/>
+        <element display="true" label="Speler" max_length="32" name="speler" reference="x_200738_proeverij_speler" type="reference"/>
+        <index name="index">
+            <element name="speler"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Categorie" max_length="40" name="x_200738_proeverij_categorie" type="collection">
+        <element display="true" label="Categorie" max_length="40" name="categorie" type="string"/>
+    </element>
+</database>

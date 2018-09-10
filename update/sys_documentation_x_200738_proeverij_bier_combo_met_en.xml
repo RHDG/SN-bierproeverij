@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="combo_met" label="Combo met" language="en" table="x_200738_proeverij_bier">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>combo_met</element>
+            <help/>
+            <hint/>
+            <label>Combo met</label>
+            <language>en</language>
+            <name>x_200738_proeverij_bier</name>
+            <plural>Combo mets</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-09 08:43:28</sys_created_on>
+            <sys_id>1d855fbf0f0b97009a53cd8ce1050edd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Combo met</sys_name>
+            <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+            <sys_update_name>sys_documentation_x_200738_proeverij_bier_combo_met_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-09 08:43:28</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

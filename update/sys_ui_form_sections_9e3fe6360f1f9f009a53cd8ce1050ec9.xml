@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_form_sections form_id="9e3fe6360f1f9f009a53cd8ce1050ec9" sys_domain="global" table="x_200738_proeverij_entry" version="3">
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_200738_proeverij_entry</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2018-07-18 13:38:15</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>9e3fe6360f1f9f009a53cd8ce1050ec9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_200738_proeverij_entry</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+            <sys_update_name>sys_ui_form_sections_9e3fe6360f1f9f009a53cd8ce1050ec9</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2018-07-18 13:38:15</sys_updated_on>
+            <sys_user/>
+            <view display_value="Nieuwe gok" name="NieuweGok">3ffe2e360f1f9f009a53cd8ce1050ed0</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

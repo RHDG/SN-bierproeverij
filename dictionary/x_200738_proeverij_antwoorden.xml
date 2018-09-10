@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Antwoorden" max_length="40" name="x_200738_proeverij_antwoorden" type="collection">
+        <element label="Bier" mandatory="true" max_length="32" name="bier" reference="x_200738_proeverij_bier" type="reference"/>
+        <element label="Nummer" mandatory="true" max_length="2" name="nummer" type="integer"/>
+        <index name="index">
+            <element name="bier"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Bier proeverij">ce94cf330f0b97009a53cd8ce1050e0b</application>
+        <assessment/>
+        <content_page/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>SCRIPT</link_type>
+        <map_page/>
+        <mobile_title>Integriteit check</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order/>
+        <override_menu_roles>false</override_menu_roles>
+        <query>var activeGr = new GlideRecord('x_200738_proeverij_settings');&#13;
+activeGr.get('setting_name', "Game status")&#13;
+gs.info('De status van de game is: '+activeGr.setting_value);&#13;
+var dateTime = GlideDateTime();&#13;
+gs.info('De huidige tijd is: '+dateTime.getDisplayValue()+'\n');&#13;
+gs.info('');&#13;
+&#13;
+var answerGr = new GlideRecord('x_200738_proeverij_antwoorden');&#13;
+answerGr.orderBy('bier.naam');&#13;
+answerGr.query();&#13;
+gs.info('Er zijn in totaal '+answerGr.getRowCount()+' antwoorden ingesteld');&#13;
+var answersTotals = 0&#13;
+gs.info('De antwoorden zijn ingevuld door:');&#13;
+while (answerGr.next()){&#13;
+gs.info(answerGr.bier.naam+' door: '+answerGr.sys_updated_by); &#13;
+answersTotals = answersTotals + answerGr.nummer;&#13;
+}&#13;
+gs.info(' ');&#13;
+if (answersTotals == 36){&#13;
+gs.info('De verdeelde antwoordnummers zijn compleet: Ze zijn allemaal ingevuld en niet dubbel.');&#13;
+}&#13;
+else {&#13;
+gs.info('Er klopt iets niet aan de antwoordnummers verdeling. Ze zijn niet allemaal ingevuld of er is iets dubbel.');&#13;
+}&#13;
+</query>
+        <report/>
+        <roles>x_200738_proeverij.Scheids,x_200738_proeverij.Speler</roles>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-17 13:50:13</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d24869ee0f5f5f009a53cd8ce1050e58</sys_id>
+        <sys_mod_count>23</sys_mod_count>
+        <sys_name>Game status check</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+        <sys_update_name>sys_app_module_d24869ee0f5f5f009a53cd8ce1050e58</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-19 09:24:48</sys_updated_on>
+        <timeline_page/>
+        <title>Game status check</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+</record_update>

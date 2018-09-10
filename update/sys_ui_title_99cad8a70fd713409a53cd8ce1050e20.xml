@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_title">
+    <sys_ui_title action="INSERT_OR_UPDATE">
+        <field_list/>
+        <script><![CDATA[var title = current.speler.name;
+var extras = ["Punten: "+current.punten+" | Antwoorden goed: "+current.antwoorden_goed.getDisplayValue()];
+
+titleValues.setTitle(title);
+titleValues.setExtras(extras);]]></script>
+        <search_fields/>
+        <style_field/>
+        <sys_class_name>sys_ui_title</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-20 10:45:00</sys_created_on>
+        <sys_id>99cad8a70fd713409a53cd8ce1050e20</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>x_200738_proeverij_speler</sys_name>
+        <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+        <sys_update_name>sys_ui_title_99cad8a70fd713409a53cd8ce1050e20</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-20 14:13:06</sys_updated_on>
+        <table>x_200738_proeverij_speler</table>
+    </sys_ui_title>
+</record_update>

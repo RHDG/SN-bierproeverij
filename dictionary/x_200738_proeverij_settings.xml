@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Settings" max_length="40" name="x_200738_proeverij_settings" type="collection">
+        <element label="Setting name" max_length="1024" name="setting_name" type="string"/>
+        <element label="Setting value" max_length="1024" name="setting_value" type="string"/>
+    </element>
+</database>

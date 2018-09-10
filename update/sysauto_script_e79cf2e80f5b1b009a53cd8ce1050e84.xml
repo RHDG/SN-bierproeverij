@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Stop de proeverij</name>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2018-07-11 14:50:06</run_start>
+        <run_time>1969-12-31 23:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[gs.info("Ok, we gaan alle punten uitrekenen:\n");
+var spelerGr = new GlideRecord('x_200738_proeverij_speler');
+spelerGr.query();
+while (spelerGr.next()){
+	var playerPoints = 0;
+	var bonusBudget = 0;
+	var bonusNormal = 0;
+	gs.info("Hier volgt speler '"+spelerGr.speler.user_name+"':");
+	var entryGr = new GlideRecord('x_200738_proeverij_entry');
+	entryGr.addQuery('sys_created_by', spelerGr.speler.user_name);
+	entryGr.query();
+	while (entryGr.next()){
+		var answerGr = new GlideRecord('x_200738_proeverij_antwoorden');
+		answerGr.query();
+		while (answerGr.next()){
+			if (answerGr.nummer == entryGr.nummer && answerGr.bier == entryGr.bier){
+				gs.info('Goeie: '+answerGr.bier.getDisplayValue()+ ', Punten: '+entryGr.bier.punten);
+				playerPoints = playerPoints + entryGr.bier.punten;
+				if (answerGr.bier.getDisplayValue() == "Heineken" || answerGr.bier.getDisplayValue() == "Amstel"){
+					bonusNormal = bonusNormal +1;
+				}
+				if (answerGr.bier.getDisplayValue() == "Schutters bier" || answerGr.bier.getDisplayValue() == "Schultenbrau"){
+					bonusBudget = bonusBudget +1;
+				}
+			}
+		}
+	}
+	if (bonusNormal > 1){
+		gs.info("Speler '"+spelerGr.speler.user_name+"' krijgt een bonus omdat hij Amstel en Heineken beide goed had! (+25)");
+		playerPoints = playerPoints + 25;
+	}
+	if (bonusBudget > 1){
+		gs.info("Speler '"+spelerGr.speler.user_name+"' krijgt een bonus omdat hij Schutters en Schultenbrau beide goed had! (+20)");
+		playerPoints = playerPoints + 25;
+	}
+	gs.info("Punten verdient voor deze speler: "+playerPoints);
+	var addPointsGr = new GlideRecord('x_200738_proeverij_speler');
+	addPointsGr.get('speler', spelerGr.speler);
+	addPointsGr.punten = addPointsGr.punten + playerPoints;
+	addPointsGr.update();
+}]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-11 14:56:19</sys_created_on>
+        <sys_id>e79cf2e80f5b1b009a53cd8ce1050e84</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Stop de proeverij</sys_name>
+        <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+        <sys_update_name>sysauto_script_e79cf2e80f5b1b009a53cd8ce1050e84</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-11 14:56:19</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

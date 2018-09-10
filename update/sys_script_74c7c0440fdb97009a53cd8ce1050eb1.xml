@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_200738_proeverij_entry</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Entry checks (insert)</name>
+        <order>10</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	var gameActive = 0;
+	var activeGr = new GlideRecord('x_200738_proeverij_settings');
+	activeGr.addQuery('setting_name', "Game status");
+	activeGr.query();
+	while (activeGr.next()){
+		if (activeGr.setting_name == "Game status" && activeGr.setting_value == "Active"){
+			gameActive = 1;
+		}
+	}
+	if (gameActive == 1){
+		var entryGr = new GlideRecord('x_200738_proeverij_entry');
+		entryGr.addQuery('sys_created_by', current.sys_created_by);
+		entryGr.query();
+		amount = 0;
+		while (entryGr.next()){
+			amount = amount +1;
+		}
+
+		if (amount >= 8){
+			gs.addInfoMessage('Je hebt al 8 resultaten voor deze speler ingevoerd. Verwijder er eerst 1 voordat je een nieuwe toevoegt!');
+			current.setAbortAction(true);
+		}
+
+		var spelerGr = new GlideRecord('x_200738_proeverij_speler');
+		spelerGr.get('speler.user_name', current.sys_created_by);
+		if (spelerGr.klaar == true){
+			gs.addInfoMessage('Speler is al klaar. Wijzigingen zijn niet meer mogelijk.');
+			current.setAbortAction(true);
+		}
+	}
+	else {
+		gs.addInfoMessage('Het spel is al voorbij of nog niet begonnen, er kunnen dus geen antwoorden toegevoegd worden.');
+		current.setAbortAction(true);
+
+	}
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-07-09 12:29:14</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>74c7c0440fdb97009a53cd8ce1050eb1</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Entry checks (insert)</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Proeverij" source="x_200738_proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Proeverij">1b830fff0fc797009a53cd8ce1050e6f</sys_scope>
+        <sys_update_name>sys_script_74c7c0440fdb97009a53cd8ce1050eb1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-07-17 13:29:46</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=74c7c0440fdb97009a53cd8ce1050eb1"/>
+</record_update>

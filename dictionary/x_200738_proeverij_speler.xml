@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Speler" max_length="40" name="x_200738_proeverij_speler" type="collection">
+        <element label="Alles geproeft" max_length="40" name="alles_geproeft" read_only="true" type="boolean"/>
+        <element label="Alles op" max_length="32" name="alles_op" type="boolean"/>
+        <element label="Antwoorden goed" max_length="2048" name="antwoorden_goed" read_only="true" reference="x_200738_proeverij_bier" type="glide_list"/>
+        <element label="Speler is klaar" max_length="32" name="klaar" type="boolean"/>
+        <element calculation="(function calculatedFieldValue(current) {&#13;&#10;&#13;&#10;&#9;var order = current.punten * -1;&#13;&#10;&#9;return order;  // return the calculated value&#13;&#10;&#13;&#10;})(current);" label="Order" max_length="3" name="order" type="integer" virtual="true"/>
+        <element attributes="order=true" default="0" label="Punten" max_length="3" name="punten" type="integer"/>
+        <element attributes="Order=2" display="true" label="Speler" max_length="32" name="speler" reference="sys_user" type="reference"/>
+        <element label="Insane time bonus" max_length="40" name="time_bonus" read_only="true" type="boolean"/>
+        <index name="index">
+            <element name="speler"/>
+        </index>
+    </element>
+</database>
